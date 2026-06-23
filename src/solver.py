@@ -2,3 +2,11 @@
 #   - converting our internal state representation into Kociemba's 54-character string notation
 #   - triggering the solver
 #   - and parsing the move sequence
+
+import kociemba
+
+def solve_cube():
+    pass
+
+def get_move_description():
+    pass
