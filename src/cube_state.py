@@ -20,12 +20,12 @@ class CubeState:
         # default HSV references for standard colors
         # fallback before centers are scanned
         self.default_references = {
-            'U': (0, 10, 240),     # White (Low Saturation, High Value)
-            'F': (60, 200, 180),   # Green
-            'R': (2, 235, 190),    # Red
-            'D': (30, 200, 200),   # Yellow
-            'B': (115, 200, 180),  # Blue
-            'L': (13, 230, 230)    # Orange
+            'U': (0, 10, 240),     # white (low Saturation, high Value)
+            'F': (60, 200, 180),   # green
+            'R': (2, 235, 190),    # red
+            'D': (30, 200, 200),   # yellow
+            'B': (115, 200, 180),  # blue
+            'L': (13, 230, 230)    # orange
         }
         
         # human-readable face names for prompts

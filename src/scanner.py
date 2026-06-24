@@ -100,6 +100,9 @@ class CubeScanner:
                     char = classify_sticker(sticker_hsv, current_refs)
                     counts[char] += 1
 
+        #! debugging: print current counts
+        print(f"\rCurrent sticker counts: {counts}", end="")
+
         overlimits = [face for face, count in counts.items() if count > 9]
         if overlimits:
             names = [self.cube_state.face_names_long[o].split()[0] for o in overlimits]
