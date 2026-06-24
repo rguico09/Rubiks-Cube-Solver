@@ -5,8 +5,11 @@
 
 import kociemba
 
-def solve_cube():
+class SolverError(Exception):
     pass
 
-def get_move_description():
+def solve_cube(cube_string):
+    pass
+
+def get_move_description(move):
     pass

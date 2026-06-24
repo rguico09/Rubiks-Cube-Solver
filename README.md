@@ -115,12 +115,15 @@ rich>=13.0.0
 ```
 rubiks-cube-solver/
 │
-├── main.py               # Entry point
-├── scanner.py            # Camera feed and face scanning logic
-├── colour_detector.py    # HSV-based sticker colour classification
-├── cube_state.py         # Cube state representation and validation
-├── solver.py             # Wrapper around the kociemba solver
-├── display.py            # Overlay rendering and move output
+├── project-research/         # Any research conducted related to the project
+│
+├── src/
+│	├── main.py               # Entry point
+│	├── scanner.py            # Camera feed and face scanning logic
+│	├── colour_detector.py    # HSV-based sticker colour classification
+│	├── cube_state.py         # Cube state representation and validation
+│	├── solver.py             # Wrapper around the kociemba solver
+│	├── display.py            # Overlay rendering and move output
 │
 ├── requirements.txt
 └── README.md

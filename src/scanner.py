@@ -78,7 +78,7 @@ class CubeScanner:
         for r in range(3):
             for c in range(3):
                 cx = start_x + (c * self.cell_size) + (self.cell_size // 2)
-                cy = start_y + (r + self.cell_size) + (self.cell_size // 2)
+                cy = start_y + (r * self.cell_size) + (self.cell_size // 2)
 
                 rx = cx - (self.roi_size // 2)
                 ry = cy - (self.roi_size // 2)
@@ -119,11 +119,11 @@ class CubeScanner:
 
         colour_keys = {
             ord('w'): 'U', ord('W'): 'U',
-            ord('g'): 'U', ord('G'): 'F',
-            ord('r'): 'U', ord('R'): 'R',
-            ord('y'): 'U', ord('Y'): 'D',
-            ord('b'): 'U', ord('B'): 'B',
-            ord('o'): 'U', ord('O'): 'L',
+            ord('g'): 'F', ord('G'): 'F',
+            ord('r'): 'R', ord('R'): 'R',
+            ord('y'): 'D', ord('Y'): 'D',
+            ord('b'): 'B', ord('B'): 'B',
+            ord('o'): 'L', ord('O'): 'L',
         }
 
         colour_names_long = {
@@ -172,7 +172,7 @@ class CubeScanner:
                     cell_x = start_x + (r_col * self.cell_size)
                     cell_y = start_y + (r_row * self.cell_size)
 
-                    cv2.rectangle(canvas, (cell_x, cell_y), (cell_x + self,self.cell_size, cell_y + self.cell_size), (255, 0, 255), 3)
+                    cv2.rectangle(canvas, (cell_x, cell_y), (cell_x + self.cell_size, cell_y + self.cell_size), (255, 0, 255), 3)
 
             # draw static grid outline
             start_x = (f_width - self.grid_size) // 2
@@ -228,10 +228,7 @@ class CubeScanner:
             cv2.rectangle(canvas, (10, f_height - 35), (f_width - 10, f_height - 10), (0, 150, 150), -1)
             cv2.putText(canvas, "REVIEW ACTIVE: Enter to Save | Backspace to Re-scan | 1-9 to Select", (15, f_height - 18), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 255, 255), 1)
 
-            cv2.imshow("Rubik's Cube Scanner", canvas)
-            key = cv2.waitKey(1) & 0xFF
-            
-            cv2.imshow("Rubik's Cube Scanner", canvas)
+            cv2.imshow("Rubik's Cube Solver", canvas)
             key = cv2.waitKey(1) & 0xFF
 
             if ord('1') <= key <= ord('9'):
@@ -450,6 +447,6 @@ class CubeScanner:
         cap.release()
         cv2.destroyAllWindows()
         for i in range(4):
-            cv2.waitKey(i)
+            cv2.waitKey(1)
 
         return success

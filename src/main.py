@@ -7,6 +7,8 @@
 import sys
 from cube_state import CubeState
 from scanner import CubeScanner
+from solver import solve_cube, SolverError
+from display import print_welcome, print_solution, print_validation_status
 
 def main():
     cube_state = CubeState()
