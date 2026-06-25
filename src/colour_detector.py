@@ -34,6 +34,8 @@ def colour_distance(hsv1, hsv2):
     # in that case, we rely primarily on Saturation and Value
     if s1 < 60 or s2 < 60:
         return 0.1 * (dh ** 2) + 1.2 * (ds ** 2) + 1.0 * (dv ** 2)
+    # if either colour is saturated, Hue is the most reliable identifier
+    # so heavily weights Hue
     else:
         return 3.0 * (dh ** 2) + 0.5 * (ds ** 2) + 0.5 * (dv ** 2)
 
