@@ -11,7 +11,7 @@ from solver import get_move_description
 
 console = Console()
 
-def print_welcome():
+def print_welcome() -> None:
     # prints a header panel to welcome user
     welcome_text = Text()
     welcome_text.append("RUBIK'S CUBE CAMERA SOLVER\n", style="bold cyan")
@@ -21,7 +21,7 @@ def print_welcome():
     panel = Panel(welcome_text, title="Rubik's Cube Solver", border_style="green", expand=False)
     console.print(panel)
 
-def print_validation_status(is_valid, msg):
+def print_validation_status(is_valid: bool, msg: str) -> None:
     # prints result of cube state validation
     if is_valid:
         console.print(f"[bold green]Success[/bold green] [white]{msg}[/white]\n")
@@ -34,7 +34,7 @@ def print_validation_status(is_valid, msg):
         )
         console.print(panel)
 
-def print_solution(moves):
+def print_solution(moves: list[str]) -> None:
     # prints moves required to solve the cube
     if not moves:
         console.print(Panel("[bold green]The cube is already solved! No moves needed.[/bold green]", border_style="green"))

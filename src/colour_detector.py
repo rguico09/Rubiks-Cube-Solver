@@ -2,9 +2,11 @@
 # Converts them to HSV (Hue, Saturation, Value) for stable detection
 #   - and maps them to standard Rubik's cube colors
 
+from typing import Optional
 import cv2
+import numpy as np
 
-def get_roi_hsv(frame, x, y, w, h):
+def get_roi_hsv(frame: np.ndarray, x: int, y: int, w: int, h: int) -> tuple[int, int, int]:
     # extracts the region of interest (ROI) from the frame
     # converts it to HSV
     # and returns the average H, S, and V values
@@ -19,7 +21,7 @@ def get_roi_hsv(frame, x, y, w, h):
 
     return (int(mean_val[0]), int(mean_val[1]), int(mean_val[2]))
 
-def colour_distance(hsv1, hsv2):
+def colour_distance(hsv1: tuple[int, int, int], hsv2: tuple[int, int, int]) -> float:
     # computes a weighted distance between 2 HSV colours
     # handles hue wrapping and white/low-saturation calibaration
 
@@ -39,7 +41,7 @@ def colour_distance(hsv1, hsv2):
     else:
         return 3.0 * (dh ** 2) + 0.5 * (ds ** 2) + 0.5 * (dv ** 2)
 
-def classify_sticker(sticker_hsv, centre_references):
+def classify_sticker(sticker_hsv: tuple[int, int, int], centre_references: dict[str, tuple[int, int, int]]) -> Optional[str]:
     # classifies a sticker's HSV value into one of the 6 faces
     #   - by finding the reference centre that has the minimum colour distance
 

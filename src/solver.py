@@ -8,7 +8,7 @@ import kociemba
 class SolverError(Exception):
     pass
 
-def solve_cube(cube_string):
+def solve_cube(cube_string: str) -> list[str]:
     # solves cube using kociemba's algorithm
     try:
         solution = kociemba.solve(cube_string)
@@ -40,7 +40,7 @@ def solve_cube(cube_string):
         raise SolverError(f"An unexpected error occurred during solving: {str(e)}")
 
 
-def get_move_description(move):
+def get_move_description(move: str) -> str:
     face_map = {
         'U': 'Top (Up)',
         'D': 'Bottom (Down)',

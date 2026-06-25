@@ -10,9 +10,9 @@ from scanner import CubeScanner
 from solver import solve_cube, SolverError
 from display import print_welcome, print_solution, print_validation_status
 
-def main():
+def main() -> None:
     print_welcome()
-    
+
     cube_state = CubeState()
 
     scanner = CubeScanner(cube_state)

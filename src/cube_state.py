@@ -3,10 +3,11 @@
 #   - mappings between scans and validation logic
 #       - (ensures exactly 9 of each color, valid edges/corners, and solvable permutation parity)
 
+from typing import Optional
 from colour_detector import classify_sticker
 
 class CubeState:
-    def __init__(self):
+    def __init__(self) -> None:
         # maps face names to list of 9 HSV tuples
         self.faces_raw = {
             'U': None,
@@ -40,16 +41,16 @@ class CubeState:
             'L': 'Left (Orange Centre)'
         }
 
-    def set_face_raw(self, face, hsv_list):
+    def set_face_raw(self, face: str, hsv_list: list[tuple[int, int, int]]) -> None:
         # stores the 9 raw HSV values for a given face
         if face in self.faces_raw:
             self.faces_raw[face] = list(hsv_list)
 
-    def is_scan_complete(self):
+    def is_scan_complete(self) -> bool:
         # returns true if all 6 faces have been scanned
         return all(self.faces_raw[face] is not None for face in self.scan_order)
     
-    def get_current_references(self):
+    def get_current_references(self) -> dict[str, tuple[int, int, int]]:
         # gets HSV references
         refs = self.default_references.copy()
         for face in self.scan_order:
@@ -57,7 +58,7 @@ class CubeState:
                 refs[face] = self.faces_raw[face][4]
         return refs
 
-    def get_kociemba_string(self):
+    def get_kociemba_string(self) -> tuple[str, dict[str, list[Optional[str]]]]:
         # classifies all facelets
         #   - using centre references
         # and constructs the 54-character kociemba representation
@@ -82,7 +83,7 @@ class CubeState:
         
         return kociemba_string, classified_faces
 
-    def validate_state(self, kociemba_string):
+    def validate_state(self, kociemba_string: str) -> tuple[bool, str]:
         # validates if the generated string is valid
         if len(kociemba_string) != 54:
             return False, f"Expected 54 facelets, got {len(kociemba_string)}."
@@ -99,7 +100,7 @@ class CubeState:
             
         return True, "Valid cube state configuration."
 
-    def reset(self):
+    def reset(self) -> None:
         # resets the scanned faces
         for face in self.faces_raw:
             self.faces_raw[face] = None

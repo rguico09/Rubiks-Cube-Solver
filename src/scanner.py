@@ -5,9 +5,10 @@
 import cv2
 import numpy as np
 from colour_detector import get_roi_hsv, classify_sticker
+from cube_state import CubeState
 
 class CubeScanner:
-    def __init__(self, cube_state):
+    def __init__(self, cube_state: CubeState) -> None:
         self.cube_state = cube_state
         self.grid_size = 240
         self.cell_size = 80
@@ -66,7 +67,7 @@ class CubeScanner:
             ]
         }
 
-    def get_roi_coordinates(self, width, height):
+    def get_roi_coordinates(self, width: int, height: int) -> list[tuple[int, int, int, int, int, int]]:
         # calculates coordinates of the 9 grid cells
         #   - based on frame size
         
@@ -87,7 +88,7 @@ class CubeScanner:
 
         return rois
     
-    def check_running_counts(self):
+    def check_running_counts(self) -> tuple[bool, str]:
         # checks the currently scanned facelets
         #   - to see if any colour already exceeds 9
 
@@ -110,7 +111,7 @@ class CubeScanner:
         
         return False, ""
     
-    def review_and_edit_face(self, face, frozen_frame, rois):
+    def review_and_edit_face(self, face: str, frozen_frame: np.ndarray, rois: list[tuple[int, int, int, int, int, int]]) -> tuple[bool, bool]:
         # enters a frozen review sub-loop
         #   - where the user can verify colours and edit them
 
@@ -251,7 +252,7 @@ class CubeScanner:
             elif key == ord('q') or key == ord('Q') or key == 27:
                 return False, True
             
-    def scan(self):
+    def scan(self) -> bool:
         # opens the camera
         # displays the GUI
         # guides the user through scanning
